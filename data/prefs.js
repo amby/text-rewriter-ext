@@ -52,18 +52,20 @@ function appendRow(data) {
         case_box = makeTD("checkbox", null, data.ic),
         whole_box = makeTD("checkbox", null, data.mw),
         smart_box = makeTD("checkbox", null, data.sc),
-        moveup = makeSpan('moveup', '⏶'),
-        movetop = makeSpan('movetop', 'T'),
-        delrow = makeSpan('delrow', 'x');
-    delrow.style.float = 'right';
-    smart_box.appendChild(delrow);
-    whole_box.appendChild(movetop);
-    whole_box.appendChild(moveup);
+        ctrl_box = document.createElement('td'),
+        moveup = makeSpan('moveup', '\u2191'),
+        movetop = makeSpan('movetop', '\u2912'),
+        delrow = makeSpan('delrow', 'X');
+    ctrl_box.style.whiteSpace = "nowrap";
+    ctrl_box.appendChild(movetop);
+    ctrl_box.appendChild(moveup);
+    ctrl_box.appendChild(delrow);
     tr.appendChild(phrase);
     tr.appendChild(replace);
     tr.appendChild(case_box);
     tr.appendChild(whole_box);
     tr.appendChild(smart_box);
+    tr.appendChild(ctrl_box);
     table.appendChild(tr);
     attachDelRowListener(tr.querySelector(".delrow"));
     attachMoveTopListener(tr.querySelector(".movetop"));

@@ -9,6 +9,9 @@
 #website_table input {
   width: calc(100% - 10ch);
 }
+#pref_table input {
+  width: calc(100% - 1ch);
+}
 /* stripes */
 tr:nth-of-type(odd) {
   background: #eee;
@@ -22,6 +25,10 @@ td, th {
   padding: 5px;
   border: 1px solid #ccc;
   text-align: left;
+}
+table .narrow { 
+    width: 1%;
+    text-align:center;
 }
 #saved_text, #website_saved_text {
   color: green;

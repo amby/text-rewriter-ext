@@ -14,7 +14,8 @@
         {
             "matches": [
                 "http://*/*",
-                "https://*/*"
+                "https://*/*",
+                "file:///*"
             ],
             "js": [
                 "data/text-rewriter.js"
