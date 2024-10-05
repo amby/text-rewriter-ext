@@ -151,7 +151,9 @@ function performReplacements(text, replacements) {
         const re = replacements[i].regexp;
         const matches = text.match(re);
         count += (matches != null) ? matches.length : 0;
-        text = text.replace(re, replacements[i].to);
+        var alternatives = replacements[i].to.split("|");
+        var alternative = alternatives[Math.floor(Math.random()*alternatives.length)];
+        text = text.replace(re, alternative);
     }
     return { text, count };
 }
