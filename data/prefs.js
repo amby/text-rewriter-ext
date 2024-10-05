@@ -52,9 +52,13 @@ function appendRow(data) {
         case_box = makeTD("checkbox", null, data.ic),
         whole_box = makeTD("checkbox", null, data.mw),
         smart_box = makeTD("checkbox", null, data.sc),
+        moveup = makeSpan('moveup', '⏶'),
+        movetop = makeSpan('movetop', 'T'),
         delrow = makeSpan('delrow', 'x');
     delrow.style.float = 'right';
     smart_box.appendChild(delrow);
+    whole_box.appendChild(movetop);
+    whole_box.appendChild(moveup);
     tr.appendChild(phrase);
     tr.appendChild(replace);
     tr.appendChild(case_box);
@@ -62,6 +66,8 @@ function appendRow(data) {
     tr.appendChild(smart_box);
     table.appendChild(tr);
     attachDelRowListener(tr.querySelector(".delrow"));
+    attachMoveTopListener(tr.querySelector(".movetop"));
+    attachMoveUpListener(tr.querySelector(".moveup"));
 }
 
 // Append an empty row to the table.
@@ -73,6 +79,39 @@ function appendEmptyRow() {
 function forEach(arr, func) {
     for (let i = 0; i < arr.length; i++)
         func(arr[i]);
+}
+
+// Put b in front of a.
+function swapRows(a, b) {
+    b.parentNode.insertBefore(b, a);
+}
+
+// Listen on clicking up arrow for a row.
+function attachMoveUpListener(itm) {
+    (function(e) {
+        e.addEventListener('click', function() {
+            // can't move top element up
+            var thisRow = e.parentNode.parentNode;
+            if (thisRow.rowIndex > 1) {
+                var prevRow = thisRow.previousSibling;
+                swapRows(prevRow, thisRow);
+            }
+        });
+    })(itm);
+}
+
+// Listen on clicking T button for a row.
+function attachMoveTopListener(itm) {
+    (function(e) {
+        e.addEventListener('click', function() {
+            // can't move top element up
+            var thisRow = e.parentNode.parentNode;
+            if (thisRow.rowIndex > 1) {
+                var topRow = thisRow.parentNode.childNodes[2];
+                swapRows(topRow, thisRow);
+            }
+        });
+    })(itm);
 }
 
 // Listen on clicking delete button of a row.
