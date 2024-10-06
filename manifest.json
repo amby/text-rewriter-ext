@@ -1,5 +1,5 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "Text Rewriter",
     "description": "Replace specified phrases on a page",
     "author": "Peter Elmers",
@@ -7,7 +7,7 @@
     "options_ui": {
         "page": "data/prefs.html"
     },
-    "browser_action": {
+    "action": {
         "default_icon": "data/icon.png"
     },
     "content_scripts": [
@@ -29,10 +29,7 @@
         "tabs"
     ],
     "background": {
-        "scripts": [
-            "lib/main.js"
-        ],
-        "persistent": false
+        "service_worker": "lib/main.js"
     },
     "icons": {
         "48": "data/icon.png",
